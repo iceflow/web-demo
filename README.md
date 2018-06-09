@@ -19,3 +19,15 @@ deactivate
 
 ```
 In order to leave your virtual environment, just run deactivate, and then run source env/bin/activate when you are ready to work on your project again.
+
+
+## nginx setup
+```Bash
+	yum install nginx
+```
+Modify /etc/nginx/nginx.conf
+```Bash
+        location /login {
+            proxy_pass   http://127.0.0.1:5000;
+        }
+````

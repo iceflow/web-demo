@@ -10,6 +10,8 @@ import os
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
+from flask import send_file
+
 UPLOAD_FOLDER = '/data/applications/web-demo/flask-by-example/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -22,6 +24,15 @@ def login():
         return do_the_login()
     else:
         return show_the_login_form()
+
+@app.route('/get_image')
+def get_image():
+    if request.args.get('type') == '1':
+       filename = 'ok.gif'
+    else:
+       filename = 'error.gif'
+    return send_file(filename, mimetype='image/gif')
+
 
 def do_the_login():
     '''
@@ -49,4 +60,4 @@ if __name__ == '__main__':
     #logger.addHandler(handler)
 
     #app.logger.addHandler(handler)
-    app.run(host='0.0.0.0', port=80, debug = False)
+    app.run(host='0.0.0.0', port=5000, debug = False)
